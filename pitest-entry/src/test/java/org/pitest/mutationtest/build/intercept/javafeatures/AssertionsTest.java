@@ -86,7 +86,7 @@ public class AssertionsTest {
     }
 
     private Predicate<AbstractInsnNode> sysoutFieldReference() {
-        return n -> n instanceof FieldInsnNode && ((FieldInsnNode) n).owner.equals("java/lang/System");
+        return n -> n instanceof FieldInsnNode fin && fin.owner.equals("java/lang/System");
     }
 
     static class HasAssertStatement {

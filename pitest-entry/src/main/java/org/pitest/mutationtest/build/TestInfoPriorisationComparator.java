@@ -14,6 +14,7 @@
  */
 package org.pitest.mutationtest.build;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -23,6 +24,7 @@ import org.pitest.coverage.TestInfo;
 public class TestInfoPriorisationComparator implements Comparator<TestInfo>,
 Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   private final int         distanceTimeWeighting;

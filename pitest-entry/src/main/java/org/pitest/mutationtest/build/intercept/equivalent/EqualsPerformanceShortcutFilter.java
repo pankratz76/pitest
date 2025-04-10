@@ -76,7 +76,7 @@ public class EqualsPerformanceShortcutFilter implements MutationInterceptor {
 
   private List<MutationDetails> filter(
       List<MutationDetails> inEquals, Mutater m) {
-    final Location equalsMethod = inEquals.get(0).getId().getLocation();
+    final Location equalsMethod = inEquals.getFirst().getId().getLocation();
 
     final Optional<MethodTree> maybeEquals = this.currentClass.methods().stream()
         .filter(MethodMatchers.forLocation(equalsMethod))

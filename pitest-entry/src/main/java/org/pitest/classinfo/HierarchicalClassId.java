@@ -1,11 +1,13 @@
 package org.pitest.classinfo;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Objects;
 
 public final class HierarchicalClassId implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   private final ClassIdentifier classId;

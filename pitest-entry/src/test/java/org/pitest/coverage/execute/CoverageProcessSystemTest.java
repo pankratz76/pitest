@@ -55,7 +55,7 @@ public class CoverageProcessSystemTest {
   @Test
   public void shouldRecordSomeCoverage() throws Exception {
     final List<CoverageResult> coverage = runCoverageForTest(TestsForMultiBlockCoverage.class);
-    assertFalse(coverage.iterator().next().getCoverage().isEmpty());
+    assertFalse(coverage.getFirst().getCoverage().isEmpty());
   }
 
   // check all the specialised implementations broadly work

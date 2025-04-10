@@ -53,7 +53,7 @@ class DivisionByMinusOneFilter extends MutatorSpecificInterceptor {
 
     private static Match<AbstractInsnNode> loads(Object l) {
         return (c,n) ->
-            result(n instanceof LdcInsnNode && ((LdcInsnNode) n).cst.equals(l), c);
+            result(n instanceof LdcInsnNode lin && lin.cst.equals(l), c);
     }
     private static Match<AbstractInsnNode> store(SlotWrite<AbstractInsnNode> slot) {
         return (c, n) -> result(true, c.store(slot, n));

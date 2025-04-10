@@ -48,8 +48,7 @@ public class InstructionMatchers {
   public static Match<AbstractInsnNode> newCall(ClassName target) {
     final String clazz = target.asInternalName();
     return (c, t) -> {
-      if ( t instanceof TypeInsnNode ) {
-        final TypeInsnNode call = (TypeInsnNode) t;
+      if ( t instanceof TypeInsnNode call ) {
         return result(call.getOpcode() == Opcodes.NEW && call.desc.equals(clazz), c);
       }
       return result(false, c);
@@ -58,9 +57,8 @@ public class InstructionMatchers {
 
   public static Match<AbstractInsnNode> ldcString(Predicate<String> match) {
     return (c, t) -> {
-      if ( t instanceof LdcInsnNode) {
-        final LdcInsnNode ldc = (LdcInsnNode) t;
-        return result(ldc.cst instanceof String && match.test((String) ldc.cst), c);
+      if ( t instanceof LdcInsnNode ldc) {
+        return result(ldc.cst instanceof String s && match.test(s), c);
       }
       return result(false, c);
     };
@@ -76,8 +74,8 @@ public class InstructionMatchers {
   }
 
   public static Match<AbstractInsnNode> incrementsVariable(final SlotRead<Integer> counterVariable) {
-   return (context, a) -> result((a instanceof IincInsnNode)
-       && context.retrieve(counterVariable).filter(isEqual(((IincInsnNode)a).var)).isPresent(), context);
+   return (context, a) -> result((a instanceof IincInsnNode iin)
+       && context.retrieve(counterVariable).filter(isEqual(iin.var)).isPresent(), context);
   }
 
   public static Match<AbstractInsnNode> anIStore(
@@ -93,8 +91,8 @@ public class InstructionMatchers {
   public static Match<AbstractInsnNode> aVariableAccess(
       final SlotWrite<Integer> counterVariable) {
     return (c, t) -> {
-      if (t instanceof VarInsnNode) {
-        return result(true, c.store(counterVariable, ((VarInsnNode) t).var));
+      if (t instanceof VarInsnNode node) {
+        return result(true, c.store(counterVariable, node.var));
       }
       return result(false, c);
     };
@@ -112,8 +110,8 @@ public class InstructionMatchers {
 
   public static Match<AbstractInsnNode> variableMatches(
       final SlotRead<Integer> counterVariable) {
-    return (c, t) -> result((t instanceof VarInsnNode)
-        && c.retrieve(counterVariable).filter(isEqual(((VarInsnNode) t).var)).isPresent(), c);
+    return (c, t) -> result((t instanceof VarInsnNode vin)
+        && c.retrieve(counterVariable).filter(isEqual(vin.var)).isPresent(), c);
   }
 
 
@@ -157,8 +155,8 @@ public class InstructionMatchers {
 
   public static  Match<AbstractInsnNode> methodCallThatReturns(final ClassName type) {
     return (c, t) -> {
-      if ( t instanceof MethodInsnNode ) {
-        return result(((MethodInsnNode) t).desc.endsWith(type.asInternalName() + ";"), c);
+      if ( t instanceof MethodInsnNode node ) {
+        return result(node.desc.endsWith(type.asInternalName() + ";"), c);
       }
       return result(false, c);
     };
@@ -170,8 +168,7 @@ public class InstructionMatchers {
   
   public static Match<AbstractInsnNode> methodCallNamed(String name) {
     return (c, t) -> {
-      if ( t instanceof MethodInsnNode ) {
-        final MethodInsnNode call = (MethodInsnNode) t;
+      if ( t instanceof MethodInsnNode call ) {
         return result(call.name.equals(name), c);
       }
       return result(false, c);
@@ -180,8 +177,8 @@ public class InstructionMatchers {
 
   public static  Match<AbstractInsnNode> methodDescEquals(final String desc) {
     return (c, t) -> {
-      if ( t instanceof MethodInsnNode ) {
-        return result(((MethodInsnNode) t).desc.equals(desc), c);
+      if ( t instanceof MethodInsnNode node ) {
+        return result(node.desc.equals(desc), c);
       }
       return result(false, c);
     };
@@ -193,8 +190,7 @@ public class InstructionMatchers {
 
   public static  Match<AbstractInsnNode> methodCallTo(final ClassName owner, Predicate<String> name) {
     return (c, t) -> {
-      if ( t instanceof MethodInsnNode ) {
-        final MethodInsnNode call = (MethodInsnNode) t;
+      if ( t instanceof MethodInsnNode call ) {
         return result( name.test(call.name) && call.owner.equals(owner.asInternalName()), c);
       }
       return result(false, c);
@@ -207,8 +203,7 @@ public class InstructionMatchers {
 
   public static Match<AbstractInsnNode> getStatic(String owner, String field) {
     return (c, t) -> {
-       if (t instanceof FieldInsnNode) {
-         FieldInsnNode fieldNode = (FieldInsnNode) t;
+       if (t instanceof FieldInsnNode fieldNode) {
          return result( t.getOpcode() == Opcodes.GETSTATIC && fieldNode.name.equals(field) && fieldNode.owner.equals(owner), c);
        }
       return result(false, c);
@@ -231,8 +226,8 @@ public class InstructionMatchers {
   private static Match<AbstractInsnNode> storeJumpTarget(
       final SlotWrite<LabelNode> label) {
     return (c, t) -> {
-      if (t instanceof JumpInsnNode ) {
-        return result(true, c.store(label, ((JumpInsnNode) t).label));
+      if (t instanceof JumpInsnNode node ) {
+        return result(true, c.store(label, node.label));
       }
       return result(false, c);
     };

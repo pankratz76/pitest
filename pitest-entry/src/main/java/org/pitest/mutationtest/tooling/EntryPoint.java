@@ -173,9 +173,9 @@ public class EntryPoint {
 
   private Consumer<Feature> asInfo(final String leader) {
     return a -> {
-      Log.getLogger().info(String.format("%1$-16s",leader + a.name()) + a.description());
+      Log.getLogger().info("%1$-16s".formatted(leader + a.name()) + a.description());
       for (final FeatureParameter each : a.params()) {
-        Log.getLogger().info(String.format("%1$-18s", "  [" + each.name() + "]") + each.description());
+        Log.getLogger().info("%1$-18s".formatted("  [" + each.name() + "]") + each.description());
       }
     };
   }

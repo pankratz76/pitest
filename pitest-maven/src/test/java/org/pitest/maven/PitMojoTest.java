@@ -161,22 +161,24 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testConfigureEnvironmentVariable() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "                    <environmentVariables>\n"
-        + "                        <DISPLAY>:20</DISPLAY>\n"
-        + "                    </environmentVariables>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+                            <environmentVariables>
+                                <DISPLAY>:20</DISPLAY>
+                            </environmentVariables>"""));
 
     assertEquals(mojo.getEnvironmentVariables().get("DISPLAY"), ":20");
   }
 
   public void testEmptyTargetClassIsIgnored() throws Exception{
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <targetClasses>\n"
-        + "    <targetClass>net.example.ClassName</targetClass>\n"
-        + "    <targetClass>net.example.Other</targetClass>\n"
-        + "    <targetClass></targetClass>\n"
-        + "  </targetClasses>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <targetClasses>
+            <targetClass>net.example.ClassName</targetClass>
+            <targetClass>net.example.Other</targetClass>
+            <targetClass></targetClass>
+          </targetClasses>"""));
 
     assertEquals(
         asList("net.example.ClassName", "net.example.Other"),
@@ -185,12 +187,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyTargetTestIsIgnored() throws Exception{
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <targetTests>\n"
-        + "    <targetTest>net.example.ClassNameTest</targetTest>\n"
-        + "    <targetTest>net.example.OtherTest</targetTest>\n"
-        + "    <targetTest></targetTest>\n"
-        + "  </targetTests>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <targetTests>
+            <targetTest>net.example.ClassNameTest</targetTest>
+            <targetTest>net.example.OtherTest</targetTest>
+            <targetTest></targetTest>
+          </targetTests>"""));
 
     assertEquals(
         asList("net.example.ClassNameTest", "net.example.OtherTest"),
@@ -200,12 +203,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyExcludedMethodIsIgnored() throws Exception{
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <excludedMethods>\n"
-        + "    <excludedMethod>*method1</excludedMethod>\n"
-        + "    <excludedMethod>*method2</excludedMethod>\n"
-        + "    <excludedMethod></excludedMethod>\n"
-        + "  </excludedMethods>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <excludedMethods>
+            <excludedMethod>*method1</excludedMethod>
+            <excludedMethod>*method2</excludedMethod>
+            <excludedMethod></excludedMethod>
+          </excludedMethods>"""));
 
     assertEquals(
         asList("*method1", "*method2"),
@@ -214,12 +218,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyExcludedClassIsIgnored() throws Exception{
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <excludedClasses>\n"
-        + "    <excludedClass>net.example.BadClass</excludedClass>\n"
-        + "    <excludedClass>net.example.WorstClass</excludedClass>\n"
-        + "    <excludedClass></excludedClass>\n"
-        + "  </excludedClasses>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <excludedClasses>
+            <excludedClass>net.example.BadClass</excludedClass>
+            <excludedClass>net.example.WorstClass</excludedClass>
+            <excludedClass></excludedClass>
+          </excludedClasses>"""));
 
     assertEquals(
         asList("net.example.BadClass", "net.example.WorstClass"),
@@ -228,12 +233,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyAvoidCallsToValueIsIgnored() throws Exception{
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <avoidCallsTo>\n"
-        + "    <avoidCallsTo>net.example.methodA</avoidCallsTo>\n"
-        + "    <avoidCallsTo>net.example.methodB</avoidCallsTo>\n"
-        + "    <avoidCallsTo></avoidCallsTo>\n"
-        + "  </avoidCallsTo>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <avoidCallsTo>
+            <avoidCallsTo>net.example.methodA</avoidCallsTo>
+            <avoidCallsTo>net.example.methodB</avoidCallsTo>
+            <avoidCallsTo></avoidCallsTo>
+          </avoidCallsTo>"""));
 
     assertEquals(
         asList("net.example.methodA", "net.example.methodB"),
@@ -242,12 +248,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyMutatorIsIgnored() throws Exception{
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <mutators>\n"
-        + "    <mutator>MUTATOR_1</mutator>\n"
-        + "    <mutator>MUTATOR_2</mutator>\n"
-        + "    <mutator></mutator>\n"
-        + "  </mutators>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <mutators>
+            <mutator>MUTATOR_1</mutator>
+            <mutator>MUTATOR_2</mutator>
+            <mutator></mutator>
+          </mutators>"""));
 
     assertEquals(
         asList("MUTATOR_1", "MUTATOR_2"),
@@ -256,12 +263,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyExcludedTestClassIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <excludedTestClasses>\n"
-        + "    <excludedTestClass>TestClass1</excludedTestClass>\n"
-        + "    <excludedTestClass>TestClass2</excludedTestClass>\n"
-        + "    <excludedTestClass></excludedTestClass>\n"
-        + "  </excludedTestClasses>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <excludedTestClasses>
+            <excludedTestClass>TestClass1</excludedTestClass>
+            <excludedTestClass>TestClass2</excludedTestClass>
+            <excludedTestClass></excludedTestClass>
+          </excludedTestClasses>"""));
 
     assertEquals(
         asList("TestClass1", "TestClass2"),
@@ -270,12 +278,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyJvmArgIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <jvmArgs>\n"
-        + "    <jvmArg>-Dnet.sample.param=42</jvmArg>\n"
-        + "    <jvmArg>-Dnet.sample.fun=true</jvmArg>\n"
-        + "    <jvmArg></jvmArg>\n"
-        + "  </jvmArgs>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <jvmArgs>
+            <jvmArg>-Dnet.sample.param=42</jvmArg>
+            <jvmArg>-Dnet.sample.fun=true</jvmArg>
+            <jvmArg></jvmArg>
+          </jvmArgs>"""));
 
     assertEquals(
         asList("-Dnet.sample.param=42", "-Dnet.sample.fun=true"),
@@ -284,12 +293,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyOutputFormatIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <outputFormats>\n"
-        + "    <outputFormat>XML</outputFormat>\n"
-        + "    <outputFormat>HTML</outputFormat>\n"
-        + "    <outputFormat></outputFormat>\n"
-        + "  </outputFormats>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <outputFormats>
+            <outputFormat>XML</outputFormat>
+            <outputFormat>HTML</outputFormat>
+            <outputFormat></outputFormat>
+          </outputFormats>"""));
 
     assertEquals(
         asList("XML", "HTML"),
@@ -298,12 +308,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyExcludedGroupIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <excludedGroups>\n"
-        + "    <excludedGroup>REDS</excludedGroup>\n"
-        + "    <excludedGroup>GREENS</excludedGroup>\n"
-        + "    <excludedGroup></excludedGroup>\n"
-        + "  </excludedGroups>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <excludedGroups>
+            <excludedGroup>REDS</excludedGroup>
+            <excludedGroup>GREENS</excludedGroup>
+            <excludedGroup></excludedGroup>
+          </excludedGroups>"""));
 
     assertEquals(
         asList("REDS", "GREENS"),
@@ -312,12 +323,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyIncludedGroupIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <includedGroups>\n"
-        + "    <includedGroup>YELLOWS</includedGroup>\n"
-        + "    <includedGroup>PURPLES</includedGroup>\n"
-        + "    <includedGroup></includedGroup>\n"
-        + "  </includedGroups>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <includedGroups>
+            <includedGroup>YELLOWS</includedGroup>
+            <includedGroup>PURPLES</includedGroup>
+            <includedGroup></includedGroup>
+          </includedGroups>"""));
 
     assertEquals(
         asList("YELLOWS", "PURPLES"),
@@ -326,12 +338,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyIncludedTestMethodIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <includedTestMethods>\n"
-        + "    <includedTestMethod>testA</includedTestMethod>\n"
-        + "    <includedTestMethod>testB</includedTestMethod>\n"
-        + "    <includedTestMethod></includedTestMethod>\n"
-        + "  </includedTestMethods>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <includedTestMethods>
+            <includedTestMethod>testA</includedTestMethod>
+            <includedTestMethod>testB</includedTestMethod>
+            <includedTestMethod></includedTestMethod>
+          </includedTestMethods>"""));
 
     assertEquals(
         asList("testA", "testB"),
@@ -340,12 +353,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyAdditionalClasspathElementIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <additionalClasspathElements>\n"
-        + "    <additionalClasspathElement>stuff.jar</additionalClasspathElement>\n"
-        + "    <additionalClasspathElement>thing.jar</additionalClasspathElement>\n"
-        + "    <additionalClasspathElement></additionalClasspathElement>\n"
-        + "  </additionalClasspathElements>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <additionalClasspathElements>
+            <additionalClasspathElement>stuff.jar</additionalClasspathElement>
+            <additionalClasspathElement>thing.jar</additionalClasspathElement>
+            <additionalClasspathElement></additionalClasspathElement>
+          </additionalClasspathElements>"""));
 
     assertEquals(
         asList("stuff.jar", "thing.jar"),
@@ -354,12 +368,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyClasspathDependencyExcludeIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <classpathDependencyExcludes>\n"
-        + "    <classpathDependencyExclude>bad.jar</classpathDependencyExclude>\n"
-        + "    <classpathDependencyExclude>unwanted.jar</classpathDependencyExclude>\n"
-        + "    <classpathDependencyExclude></classpathDependencyExclude>\n"
-        + "  </classpathDependencyExcludes>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <classpathDependencyExcludes>
+            <classpathDependencyExclude>bad.jar</classpathDependencyExclude>
+            <classpathDependencyExclude>unwanted.jar</classpathDependencyExclude>
+            <classpathDependencyExclude></classpathDependencyExclude>
+          </classpathDependencyExcludes>"""));
 
     assertEquals(
         asList("bad.jar", "unwanted.jar"),
@@ -368,12 +383,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyExcludedRunnerIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <excludedRunners>\n"
-        + "    <excludedRunner>SimpleRunner</excludedRunner>\n"
-        + "    <excludedRunner>FastRunner</excludedRunner>\n"
-        + "    <excludedRunner></excludedRunner>\n"
-        + "  </excludedRunners>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <excludedRunners>
+            <excludedRunner>SimpleRunner</excludedRunner>
+            <excludedRunner>FastRunner</excludedRunner>
+            <excludedRunner></excludedRunner>
+          </excludedRunners>"""));
 
     assertEquals(
         asList("SimpleRunner", "FastRunner"),
@@ -382,12 +398,13 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testEmptyFeatureIsIgnored() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-        + "  <features>\n"
-        + "    <feature>DO_THAT_THING</feature>\n"
-        + "    <feature>BE_AWESOME</feature>\n"
-        + "    <feature></feature>\n"
-        + "  </features>"));
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+        
+          <features>
+            <feature>DO_THAT_THING</feature>
+            <feature>BE_AWESOME</feature>
+            <feature></feature>
+          </features>"""));
 
     assertEquals(
         asList("DO_THAT_THING", "BE_AWESOME"),
@@ -396,14 +413,16 @@ public class PitMojoTest extends BasePitMojoTest {
 
   public void testCombinesFeaturesAndExtraFeatures() throws Exception {
 
-    PitMojo mojo = createPITMojo(createPomWithConfiguration("\n"
-            + "  <features>\n"
-            + "    <feature>FEATURE</feature>\n"
-            + "  </features>\n"
-            + "  <extraFeatures>\n"
-            + "    <feature>ALSO_A_FEATURE</feature>\n"
-            + "    <feature>MORE</feature>\n"
-            + "  </extraFeatures>\n"
+    PitMojo mojo = createPITMojo(createPomWithConfiguration("""
+            
+              <features>
+                <feature>FEATURE</feature>
+              </features>
+              <extraFeatures>
+                <feature>ALSO_A_FEATURE</feature>
+                <feature>MORE</feature>
+              </extraFeatures>
+            """
     ));
 
     assertEquals(

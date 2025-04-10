@@ -85,13 +85,13 @@ public class PathComparatorTest {
         PathComparator underTest = new PathComparator("a/b/c/irrelevant", "/");
         List<String> paths = asList("a/z", "a/b/c/d/", "a/b/c/d/e", "a/b/e", "a/b/cc");
         paths.sort(underTest);
-        assertThat(paths.get(0)).isEqualTo("a/b/c/d/");
+        assertThat(paths.getFirst()).isEqualTo("a/b/c/d/");
         assertThat(paths.get(1)).isEqualTo("a/b/c/d/e");
 
         paths = asList("a/b/cc", "a/b/e", "a/z", "a/b/c/d/", "a/b/c/d/e", "a/b/irrelevant" );
 
         paths.sort(underTest);
-        assertThat(paths.get(0)).isEqualTo("a/b/c/d/");
+        assertThat(paths.getFirst()).isEqualTo("a/b/c/d/");
         assertThat(paths.get(1)).isEqualTo("a/b/c/d/e");
     }
 

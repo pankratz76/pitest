@@ -142,7 +142,7 @@ class IncrementalAnalyser implements MutationAnalyser {
 
     // hack the ordered list to put the killing test at the front
     mutableOrderedTestList.remove(maybeKillingTest.get());
-    mutableOrderedTestList.add(0, maybeKillingTest.get());
+    mutableOrderedTestList.addFirst(maybeKillingTest.get());
 
     return analyseFromScratch(mutation);
   }

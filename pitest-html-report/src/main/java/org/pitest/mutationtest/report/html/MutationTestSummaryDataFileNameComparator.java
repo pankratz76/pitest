@@ -1,11 +1,13 @@
 package org.pitest.mutationtest.report.html;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
 
 public class MutationTestSummaryDataFileNameComparator implements
 Comparator<MutationTestSummaryData>, Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   @Override

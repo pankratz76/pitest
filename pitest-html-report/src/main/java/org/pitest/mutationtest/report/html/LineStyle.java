@@ -47,7 +47,7 @@ public class LineStyle {
   }
 
   public String getMutation() {
-    if (!this.line.detectionStatus().isPresent()) {
+    if (this.line.detectionStatus().isEmpty()) {
       return "";
     }
 

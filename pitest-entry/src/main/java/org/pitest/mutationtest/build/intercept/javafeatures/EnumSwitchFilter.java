@@ -58,8 +58,8 @@ public class EnumSwitchFilter extends RegionInterceptor {
 
     private static Match<AbstractInsnNode> getStatic(String name) {
         return (c, n) -> {
-            if (n instanceof FieldInsnNode) {
-                return result(((FieldInsnNode) n).name.contains(name), c);
+            if (n instanceof FieldInsnNode node) {
+                return result(node.name.contains(name), c);
             }
             return result(false, c);
         };

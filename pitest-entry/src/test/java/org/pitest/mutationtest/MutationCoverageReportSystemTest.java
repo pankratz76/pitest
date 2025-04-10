@@ -32,6 +32,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.example.classloaders.MuteeInOtherClassloader;
 import com.example.classloaders.MuteeInOtherClassloaderPooledTest;
@@ -213,7 +214,7 @@ public class MutationCoverageReportSystemTest extends ReportTestBase {
     List<MutationResult> resultData = this.metaDataExtractor.getData();
     assertEquals(1, resultData.size());
     
-    MutationResult mutation = resultData.get(0);
+    MutationResult mutation = resultData.getFirst();
     assertEquals(KILLED, mutation.getStatus());
     assertEquals(3, mutation.getNumberOfTestsRun());
     assertEquals(2, mutation.getKillingTests().size());
@@ -232,7 +233,7 @@ public class MutationCoverageReportSystemTest extends ReportTestBase {
   public void shouldMutateClassesSuppliedToAlternateClassPath()
       throws IOException {
     // yes, this is horrid
-    final String location = ("" + Math.random()).replaceAll("\\.", "") + ".jar";
+    final String location = ("" + ThreadLocalRandom.current().nextDouble()).replaceAll("\\.", "") + ".jar";
     try {
       try (FileOutputStream fos = new FileOutputStream(location)) {
         final InputStream stream = IsolationUtils.getContextClassLoader()

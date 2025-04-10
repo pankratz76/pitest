@@ -92,8 +92,7 @@ public class RecordFilter implements MutationInterceptor {
     }
 
     private boolean isInvokeDynamicCallToObjectMethods(AbstractInsnNode node) {
-        if (node instanceof InvokeDynamicInsnNode) {
-            InvokeDynamicInsnNode call = (InvokeDynamicInsnNode) node;
+        if (node instanceof InvokeDynamicInsnNode call) {
             return call.bsm.getOwner().equals("java/lang/runtime/ObjectMethods")
                 && call.bsm.getName().equals("bootstrap");
 

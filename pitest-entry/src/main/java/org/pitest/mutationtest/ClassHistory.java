@@ -1,5 +1,6 @@
 package org.pitest.mutationtest;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -9,6 +10,7 @@ import org.pitest.classinfo.HierarchicalClassId;
 
 public class ClassHistory implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   private final HierarchicalClassId id;

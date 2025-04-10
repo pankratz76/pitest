@@ -142,7 +142,7 @@ public class SequenceQueryTest {
 
         List<Context> actual = testee.contextMatches(sequence, context);
         assertThat(actual).hasSize(1);
-        assertThat(actual.get(0).retrieve(slot1.read())).contains(2);
+        assertThat(actual.getFirst().retrieve(slot1.read())).contains(2);
     }
 
     @Test

@@ -1,5 +1,6 @@
 package org.pitest.mutationtest.build;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -14,6 +15,7 @@ import java.util.Comparator;
 class AnalysisPriorityComparator implements Comparator<MutationAnalysisUnit>,
 Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   @Override

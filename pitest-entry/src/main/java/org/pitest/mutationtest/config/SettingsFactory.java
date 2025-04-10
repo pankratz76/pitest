@@ -115,7 +115,7 @@ public class SettingsFactory {
     if (sources.size() > 1) {
        throw new RuntimeException("More than one CodeSource found on classpath.");
     }
-    return sources.get(0).createCodeSource(classPath);
+    return sources.getFirst().createCodeSource(classPath);
   }
 
   public HistoryFactory createHistory() {
@@ -131,7 +131,7 @@ public class SettingsFactory {
     if (enabledHistory.size() > 1) {
       throw new RuntimeException("More than one HistoryFactory enabled.");
     }
-    return enabledHistory.get(0);
+    return enabledHistory.getFirst();
   }
 
   public void describeFeatures(Consumer<Feature> enabled, Consumer<Feature> disabled) {
@@ -208,7 +208,7 @@ public class SettingsFactory {
     if (transformers.isEmpty()) {
       return cov -> cov;
     }
-    return transformers.get(0).create(code);
+    return transformers.getFirst().create(code);
   }
 
   private Collection<MutationResultListenerFactory> findListeners() {

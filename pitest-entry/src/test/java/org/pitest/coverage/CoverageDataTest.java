@@ -183,7 +183,7 @@ public class CoverageDataTest {
 
     this.testee.calculateClassCoverage(makeCoverageResult("foo", "fooTest", 0,
         1));
-    final BlockCoverage actual = this.testee.createCoverage().get(0);
+    final BlockCoverage actual = this.testee.createCoverage().getFirst();
     assertEquals(block.build(), actual.getBlock());
     assertThat(actual.getTests()).contains("FooTest.fooTest");
   }

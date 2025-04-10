@@ -16,7 +16,7 @@ public class CompoundMutationResultInterceptor implements MutationResultIntercep
     }
 
     public CompoundMutationResultInterceptor add(MutationResultInterceptor extra) {
-        interceptors.add(0, extra);
+        interceptors.addFirst(extra);
         return this;
     }
 

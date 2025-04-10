@@ -115,8 +115,7 @@ public class ExcludedAnnotationInterceptor implements MutationInterceptor {
     InvokeDynamicInsnNode indy = (InvokeDynamicInsnNode) insn;
 
     for (Object bsmArg : indy.bsmArgs) {
-      if (bsmArg instanceof Handle) {
-        Handle handle = (Handle) bsmArg;
+      if (bsmArg instanceof Handle handle) {
         // Check if the method is in the same class and is a lambda method
         if (handle.getOwner().equals(clazz.asInternalName()) && handle.getName().startsWith("lambda$")) {
           return Stream.of(Location.location(clazz,handle.getName(), handle.getDesc()));

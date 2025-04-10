@@ -1,11 +1,13 @@
 package com.example;
 
+import java.io.Serial;
 import java.io.Serializable;
 import com.google.common.base.Preconditions;
 
 public class MyRequest implements Serializable {
 
-   private static final long serialVersionUID = -3548858114709541512L;
+  @Serial
+  private static final long serialVersionUID = -3548858114709541512L;
    private Long userId;
 
    public Long getUserId() {

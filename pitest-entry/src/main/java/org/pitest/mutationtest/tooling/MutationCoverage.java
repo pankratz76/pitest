@@ -316,9 +316,9 @@ public class MutationCoverage {
 
     final CoverageSummary coverage = combinedStatistics.getCoverageSummary();
     if (coverage != null) {
-      ps.println(String.format(">> Line Coverage (for mutated classes only): %d/%d (%d%%)", coverage.getNumberOfCoveredLines(),
-              coverage.getNumberOfLines(), coverage.getCoverage()));
-      ps.println(String.format(">> %d tests examined", coverage.getNumberOfTests()));
+      ps.println(">> Line Coverage (for mutated classes only): %d/%d (%d%%)".formatted(coverage.getNumberOfCoveredLines(),
+          coverage.getNumberOfLines(), coverage.getCoverage()));
+      ps.println(">> %d tests examined".formatted(coverage.getNumberOfTests()));
     }
 
     stats.report(ps);

@@ -122,8 +122,7 @@ public class EquivalentReturnMutationFilter implements MutationInterceptorFactor
 
   private static Match<AbstractInsnNode> takesNoArgs() {
     return (c, node) -> {
-      if (node instanceof MethodInsnNode) {
-        final MethodInsnNode call = (MethodInsnNode) node;
+      if (node instanceof MethodInsnNode call) {
         return result(Type.getArgumentTypes(call.desc).length == 0, c);
       }
       return result(false, c);

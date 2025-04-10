@@ -125,10 +125,12 @@ public class ArgLineParserTest {
 
     @Test
     public void handlesRealExampleArgLine() {
-        String argLine = "-Dfile.encoding=UTF-8\n" +
-                "      -Dnet.bytebuddy.experimental=true\n" +
-                "      --add-opens=java.base/java.lang=ALL-UNNAMED\n" +
-                "      --add-opens=java.base/java.math=ALL-UNNAMED\n";
+        String argLine = """
+                -Dfile.encoding=UTF-8
+                      -Dnet.bytebuddy.experimental=true
+                      --add-opens=java.base/java.lang=ALL-UNNAMED
+                      --add-opens=java.base/java.math=ALL-UNNAMED
+                """;
 
         List<String> actual = ArgLineParser.split(argLine);
         assertThat(actual).containsExactly("-Dfile.encoding=UTF-8",

@@ -89,8 +89,7 @@ public class InlinedFinallyBlockFilter implements MutationInterceptor {
 
   private static Match<AbstractInsnNode> handlerLabel(Slot<List> handlers) {
     return (c,t) -> {
-      if (t instanceof LabelNode) {
-        LabelNode label = (LabelNode) t;
+      if (t instanceof LabelNode label) {
         List<LabelNode> labels = c.retrieve(handlers.read()).get();
         return result(labels.contains(label), c);
       }
@@ -153,8 +152,8 @@ public class InlinedFinallyBlockFilter implements MutationInterceptor {
       return;
     }
 
-    final MutationDetails baseMutation = mutationsInHandlerBlock.get(0);
-    final int firstBlock = baseMutation.getBlocks().get(0);
+    final MutationDetails baseMutation = mutationsInHandlerBlock.getFirst();
+    final int firstBlock = baseMutation.getBlocks().getFirst();
 
     // check that we have at least on mutation in a different block
     // to the base one (is this not implied by there being only 1 mutation in

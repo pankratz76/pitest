@@ -108,10 +108,10 @@ public class MutationStatusMapTest {
             DetectionStatus.SURVIVED, Collections.singletonList("foo"),Arrays.asList("foo1","bar"), Arrays.asList("foo","foo1","bar"));
     this.testee.setStatusForMutation(this.aSurvivedMutationDetails, statusPairOne);
 
-    assertEquals(DetectionStatus.SURVIVED, this.testee.createMutationResults().get(0).getStatus());
-    assertThat(this.testee.createMutationResults().get(0).getKillingTests()).contains("foo");
-    assertThat(this.testee.createMutationResults().get(0).getSucceedingTests()).contains("foo1","bar");
-    assertThat(this.testee.createMutationResults().get(0).getCoveringTests()).contains("foo","foo1","bar");
+    assertEquals(DetectionStatus.SURVIVED, this.testee.createMutationResults().getFirst().getStatus());
+    assertThat(this.testee.createMutationResults().getFirst().getKillingTests()).contains("foo");
+    assertThat(this.testee.createMutationResults().getFirst().getSucceedingTests()).contains("foo1","bar");
+    assertThat(this.testee.createMutationResults().getFirst().getCoveringTests()).contains("foo","foo1","bar");
 
   }
 

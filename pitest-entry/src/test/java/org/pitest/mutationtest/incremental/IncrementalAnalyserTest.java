@@ -262,7 +262,7 @@ public class IncrementalAnalyserTest {
     MutationResult actual = this.testee.analyse(singletonList(md)).stream()
                     .findFirst().get();
 
-    assertThat(actual.getDetails().getTestsInOrder().get(0), Matchers.equalTo(testNamed(killingTest)));
+    assertThat(actual.getDetails().getTestsInOrder().getFirst(), Matchers.equalTo(testNamed(killingTest)));
     assertThat(actual.getDetails().getTestsInOrder(), Matchers.hasSize(4));
   }
 
@@ -286,7 +286,7 @@ public class IncrementalAnalyserTest {
     MutationResult actual = this.testee.analyse(singletonList(md)).stream()
             .findFirst().get();
 
-    assertThat(actual.getDetails().getTestsInOrder().get(0), Matchers.equalTo(testNamed(killingTest)));
+    assertThat(actual.getDetails().getTestsInOrder().getFirst(), Matchers.equalTo(testNamed(killingTest)));
     assertThat(actual.getDetails().getTestsInOrder(), Matchers.hasSize(4));
   }
 

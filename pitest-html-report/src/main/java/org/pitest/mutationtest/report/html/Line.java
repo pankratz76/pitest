@@ -55,7 +55,7 @@ public class Line {
     if (this.mutations.isEmpty()) {
       return Optional.empty();
     }
-    return Optional.ofNullable(this.mutations.get(0).getStatus());
+    return Optional.ofNullable(this.mutations.getFirst().getStatus());
   }
 
   public int getNumberOfMutations() {

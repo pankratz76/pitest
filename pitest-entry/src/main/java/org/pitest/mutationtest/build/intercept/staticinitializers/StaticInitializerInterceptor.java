@@ -239,12 +239,12 @@ class StaticInitializerInterceptor implements MutationInterceptor {
   }
 
   private Stream<Location> nodeToLocation(AbstractInsnNode n) {
-    if (n instanceof MethodInsnNode) {
-      return Stream.of(asLocation((MethodInsnNode) n));
+    if (n instanceof MethodInsnNode node) {
+      return Stream.of(asLocation(node));
     }
 
-    if (n instanceof InvokeDynamicInsnNode) {
-      return asLocation((InvokeDynamicInsnNode) n);
+    if (n instanceof InvokeDynamicInsnNode node) {
+      return asLocation(node);
     }
 
     return Stream.empty();

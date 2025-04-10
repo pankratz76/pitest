@@ -78,7 +78,7 @@ public class MutationTestBuilderTest {
         Arrays.asList(mutation2, mutation2));
     final List<MutationAnalysisUnit> actual = this.testee
         .createMutationTestUnits(Arrays.asList(foo, bar));
-    assertTrue(actual.get(0).priority() > actual.get(1).priority());
+    assertTrue(actual.getFirst().priority() > actual.get(1).priority());
   }
 
   private void assertCreatesOneTestUnitForTwoMutations() {
