@@ -7,7 +7,8 @@ target/
 */.classpath
 */.project
 .metadata
-.idea
+.idea/*
+!.idea/icon.png
 *.iml
 .checkstyle
 dependency-reduced-pom.xml
